@@ -1,0 +1,52 @@
+resources:
+- name: source-code
+  type: git
+  source:
+    uri: https://github.com/tkdchen/simple-python-app.git
+    branch: main
+
+jobs:
+- name: hello-pipeline
+  public: true
+
+  plan:
+  - get: source-code
+
+  - task: git-show
+    config:
+      platform: linux
+
+      image_resource:
+        type: registry-image
+        source:
+          repository: alpine/git
+
+      inputs:
+      - name: source-code
+
+      run:
+        path: sh
+        args:
+        - -exc
+        - |
+          echo cd source-code
+          echo git show --stat
+
+  - task: greeting
+    config:
+      platform: linux
+
+      image_resource:
+        type: registry-image
+        source:
+          repository: debian
+
+      run:
+        path: sh
+        args:
+        - -exc
+        - |
+          printf "Hello from Concourse!\n"
+
+
+# vim: ts=2 sw=2 ai eb
