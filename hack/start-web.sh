@@ -12,4 +12,4 @@ export CONCOURSE_SESSION_SIGNING_KEY="$HOME/code/cc-ci/keys/session_signing_key"
 export CONCOURSE_TSA_HOST_KEY="$HOME/code/cc-ci/keys/tsa_host_key"
 export CONCOURSE_TSA_AUTHORIZED_KEYS="$HOME/code/cc-ci/keys/authorized_worker_keys"
 
-"$HOME/concourse/bin/concourse" web
+concourse web
