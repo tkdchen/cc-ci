@@ -2,7 +2,7 @@ resources:
 - name: source-code
   type: git
   source:
-    uri: https://github.com/tkdchen/simple-python-app.git
+    uri: https://gitcode.com/qicx/simple-python-app
     branch: main
 
 jobs:
@@ -15,15 +15,13 @@ jobs:
   - task: git-show
     config:
       platform: linux
-
       image_resource:
         type: registry-image
         source:
-          repository: alpine/git
-
+          repository: registry.fedoraproject.org/fedora
+          tag: "44"
       inputs:
       - name: source-code
-
       run:
         path: sh
         args:
@@ -35,12 +33,11 @@ jobs:
   - task: greeting
     config:
       platform: linux
-
       image_resource:
         type: registry-image
         source:
-          repository: debian
-
+          repository: registry.fedoraproject.org/fedora
+          tag: "44"
       run:
         path: sh
         args:

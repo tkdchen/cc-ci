@@ -1,0 +1,13 @@
+jobs:
+- name: hello
+  plan:
+  - task: say-hello
+    config:
+      platform: linux
+      image_resource:
+        type: registry-image
+        source:
+          repository: registry.access.redhat.com/ubi10/ubi
+      run:
+        path: echo
+        args: ["hello world"]
