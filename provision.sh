@@ -7,7 +7,7 @@ set -euo pipefail
 # /etc/concourse/keys: generated keys for running web and worker
 # /var/lib/concourse: concourse data directory
 
-VERSION=0.8.3
+export VERSION=0.8.3
 
 fetch_concourse_cli() {
     local -r base_dl_url="https://github.com/concourse/concourse/releases/download/v${VERSION}"
