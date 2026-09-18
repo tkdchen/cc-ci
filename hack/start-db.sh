@@ -10,6 +10,6 @@ podman run --name concourse-pg-db \
 --health-retries 5 \
 --health-cmd "isready -U concourse" \
 -v concourse-data:/var/lib/postgresql/data \
-postgres:15
+quay.io/tkdchen/postgres:15
 
 # vim: ts=2 sw=2 et
