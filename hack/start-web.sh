@@ -1,11 +1,15 @@
 #!/usr/bin/env bash
 
+set -euo pipefail
+
+EXTERNAL_IP=${1:-127.0.0.1}
+
 export CONCOURSE_POSTGRES_HOST=127.0.0.1
 export CONCOURSE_POSTGRES_PORT=5432
 export CONCOURSE_POSTGRES_USER=concourse
 export CONCOURSE_POSTGRES_PASSWORD=concourse_pass
 export CONCOURSE_POSTGRES_DATABASE=concourse
-export CONCOURSE_EXTERNAL_URL="http://0.0.0.0:8080"
+export CONCOURSE_EXTERNAL_URL="http://${EXTERNAL_IP}:8080"
 export CONCOURSE_ADD_LOCAL_USER="admin:admin"
 export CONCOURSE_MAIN_TEAM_LOCAL_USER=admin
 export CONCOURSE_SESSION_SIGNING_KEY="/etc/concourse/keys/session_signing_key"
