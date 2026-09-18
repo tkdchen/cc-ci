@@ -22,7 +22,7 @@ if [ ! -e "/usr/local/concourse/bin/" ]; then
     rm -r "$download_dir"
 fi
 
-export PATH="/usr/local/concourse/cli:$PATH"
+export PATH="/usr/local/concourse/bin:$PATH"
 
 keys_dir="/etc/concourse/keys"
 [ -e "$keys_dir" ] || mkdir -p "$keys_dir"
