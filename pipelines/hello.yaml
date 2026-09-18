@@ -28,9 +28,9 @@ jobs:
         - -exc
         - |
           dnf install -y buildah git
-          revision=$(git rev-parse HEAD)
-          echo "build revision $revision"
           ls -l
+          echo -n "build revision "
+          git rev-parse HEAD
 
   - task: greeting
     config:
