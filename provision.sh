@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -euo pipefail
+
 # Directories:
 # /usr/local/concourse/bin: executables of concourse-ci
 # /etc/concourse/keys: generated keys for running web and worker
