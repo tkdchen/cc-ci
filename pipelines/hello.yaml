@@ -27,8 +27,10 @@ jobs:
         args:
         - -exc
         - |
-          echo cd source-code
-          echo git show --stat
+          revision=$(git rev-parse HEAD)
+          echo "build revision $revision"
+          ls -l
+          dnf install -y buildah
 
   - task: greeting
     config:
