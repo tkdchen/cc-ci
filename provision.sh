@@ -7,25 +7,19 @@ set -euo pipefail
 # /etc/concourse/keys: generated keys for running web and worker
 # /var/lib/concourse: concourse data directory
 
-export VERSION=8.3.0
+tarball=${1:?Missing concourse tarball file}
 
-fetch_concourse_cli() {
-    local -r base_dl_url="https://github.com/concourse/concourse/releases/download/v${VERSION}"
+if [ ! -e "/usr/local/concourse/bin/" ]; then
+    printf "Install concourse CLI\n" >&2
     download_dir=$(mktemp -d)
     pushd "$download_dir"
-    curl -C - -LO "${base_dl_url}/concourse-${VERSION}-linux-amd64.tgz"
-    tar xvf "concourse-${VERSION}-linux-amd64.tgz"
+    tar xvf "$tarball"
     tar xvf concourse/fly-assets/fly-linux-amd64.tgz
     rm -r concourse/fly-assets/
     mv fly /usr/local/bin/
     mv concourse/ /usr/local/
     popd
     rm -r "$download_dir"
-}
-
-if [ ! -e "/usr/local/concourse/bin/" ]; then
-    printf "Fetch concourse CLI\n" >&2
-    fetch_concourse_cli
 fi
 
 export PATH="/usr/local/concourse/cli:$PATH"
@@ -40,3 +34,5 @@ printf "Set up keys under working directory %s" "$keys_dir" >&2
 cat "${keys_dir}/worker_key.pub" >"${keys_dir}/authorized_worker_keys"
 
 [ -e /var/lib/concourse/ ] || mkdir -p /var/lib/concourse
+
+printf "Done." >&2
