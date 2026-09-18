@@ -27,10 +27,10 @@ jobs:
         args:
         - -exc
         - |
+          dnf install -y buildah git
           revision=$(git rev-parse HEAD)
           echo "build revision $revision"
           ls -l
-          dnf install -y buildah
 
   - task: greeting
     config:
